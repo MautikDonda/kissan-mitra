@@ -1,0 +1,141 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kissanmitra/pallete.dart';
+import 'package:kissanmitra/screens/forms/create-new-account.dart';
+import 'package:kissanmitra/screens/homescreen.dart';
+import 'package:kissanmitra/screens/widgets/statics.dart';
+// ignore: unused_import
+import 'package:kissanmitra/screens/widgets/widgets.dart';
+import 'package:kissanmitra/screens/widgets/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    precacheImage(AssetImage('assets/images/login_bg.jpg'), context);
+    return Stack(
+      children: [
+        BackgroundImage(
+          image: 'assets/images/login_bg.jpg',
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Column(
+            children: [
+              Flexible(
+                child: Center(
+                  child: Text(
+                    'appname'.tr(),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextInputField(
+                    icon: FontAwesomeIcons.envelope,
+                    hint: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    inputAction: TextInputAction.next,
+                    value: 1,
+                  ),
+                  PasswordInput(
+                    icon: FontAwesomeIcons.lock,
+                    hint: 'Password',
+                    inputAction: TextInputAction.done,
+                    value: 2,
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, 'ForgotPassword'),
+                    child: Text(
+                      'forgot'.tr(),
+                      style: kBodyText,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  RoundedButton(
+                    action: () async {
+                      String email =
+                          CreateNewAccount.myCreateController[1].text;
+                      String pass = CreateNewAccount.myCreateController[2].text;
+                      if (email.trim().isEmpty || pass.trim().isEmpty)
+                        Statics.showToast("Fill all the Field");
+                      else {
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: CreateNewAccount
+                                      .myCreateController[1].text,
+                                  password: CreateNewAccount
+                                      .myCreateController[2].text)
+                              .then((value) {
+                            CreateNewAccount.myCreateController[0].text = "";
+                            CreateNewAccount.myCreateController[1].text = "";
+                            CreateNewAccount.myCreateController[2].text = "";
+                            CreateNewAccount.myCreateController[3].text = "";
+                            Navigator.of(context).pop('login');
+                          }).onError((error, stackTrace) {
+                            if (error.toString().contains("wrong-password"))
+                              Statics.showToast("Wrong Password");
+                            else if (error
+                                .toString()
+                                .contains("user-not-found"))
+                              Statics.showToast("No User Found!");
+                            else
+                              Statics.showToast(error.toString());
+                            print(error.toString());
+                          });
+                        } catch (e) {
+                          print(e);
+                          Statics.showToast(e.toString());
+                        }
+                      }
+                    },
+                    buttonName: 'Login',
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                ],
+              ),
+              GestureDetector(
+                onTap: () async {
+                  var tmp =
+                      await Navigator.pushNamed(context, 'CreateNewAccount');
+                  if (tmp.toString() == 'create')
+                    setState(() {
+                      CreateNewAccount.pass.text = '';
+                    });
+                },
+                child: Container(
+                  child: Text(
+                    'create_new'.tr(),
+                    style: kBodyText,
+                  ),
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(width: 1, color: kWhite))),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}

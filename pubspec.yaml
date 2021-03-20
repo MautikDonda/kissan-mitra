@@ -1,0 +1,49 @@
+name: kissanmitra
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # My Dependencies
+  easy_localization: ^3.0.0
+  cloud_firestore: ^1.0.0
+  firebase_core: ^1.0.0
+  firebase_storage:
+  fluttertoast:
+  font_awesome_flutter: ^8.10.0
+  firebase_auth: 1.0.0
+  google_fonts: ^2.0.0
+  url_launcher: ^6.0.2
+  google_nav_bar: ^4.0.2
+  line_icons: ^1.3.2
+  file_picker:
+  image_picker: ^0.6.5 
+  shared_preferences: ^2.0.4
+  carousel_slider: ^3.0.0
+  lottie: ^1.0.1
+  image_cropper:
+
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/translations/
+    - assets/lotties/
