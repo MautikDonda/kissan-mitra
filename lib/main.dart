@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
+    
     await Firebase.initializeApp();
   } catch (e) {
     print('Error in initialization : $e');

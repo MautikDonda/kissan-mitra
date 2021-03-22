@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -57,20 +58,52 @@ class Statics {
     print(msg1);
   }
 
-  static Future<File> cropImage16() async {
+  static Future<File> cropImage16(
+      {CropAspectRatioPreset size = CropAspectRatioPreset.ratio16x9,
+      int quality = 50}) async {
     File tmp = await ImagePicker.pickImage(source: ImageSource.gallery);
     tmp = await ImageCropper.cropImage(
-      compressQuality: 50,
+      compressQuality: quality,
       sourcePath: tmp.path,
       maxHeight: 500,
       maxWidth: 500,
-      aspectRatio: CropAspectRatio(ratioX: 16, ratioY: 9),
+      // aspectRatio: CropAspectRatio(ratioX: 16, ratioY: 9),
       androidUiSettings: AndroidUiSettings(
           lockAspectRatio: true,
-          initAspectRatio: CropAspectRatioPreset.ratio16x9,
+          initAspectRatio: size,
           hideBottomControls: false),
     );
     return tmp;
+  }
+
+  static String timeAgoSinceDate(String dateString,
+      {bool numericDates = true}) {
+    DateTime notificationDate =
+        DateFormat("yyyy-MM-dd hh:mm:ss").parse(dateString);
+    final date2 = DateTime.now();
+    final difference = date2.difference(notificationDate);
+
+    if (difference.inDays > 8) {
+      return dateString;
+    } else if ((difference.inDays / 7).floor() >= 1) {
+      return (numericDates) ? '1 week ago' : 'Last week';
+    } else if (difference.inDays >= 2) {
+      return '${difference.inDays} days ago';
+    } else if (difference.inDays >= 1) {
+      return (numericDates) ? '1 day ago' : 'Yesterday';
+    } else if (difference.inHours >= 2) {
+      return '${difference.inHours} hours ago';
+    } else if (difference.inHours >= 1) {
+      return (numericDates) ? '1 hour ago' : 'An hour ago';
+    } else if (difference.inMinutes >= 2) {
+      return '${difference.inMinutes} minutes ago';
+    } else if (difference.inMinutes >= 1) {
+      return (numericDates) ? '1 minute ago' : 'A minute ago';
+    } else if (difference.inSeconds >= 3) {
+      return '${difference.inSeconds} seconds ago';
+    } else {
+      return 'Just now';
+    }
   }
 }
 
