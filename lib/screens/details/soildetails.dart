@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
+import 'package:translator/translator.dart';
 
 class TheSoilDetails extends StatefulWidget {
   TheSoilDetails(this.name);
@@ -14,7 +15,14 @@ class TheSoilDetails extends StatefulWidget {
 }
 
 class _TheSoilDetailsState extends State<TheSoilDetails> {
+  final translator = GoogleTranslator();
   _TheSoilDetailsState(this.name);
+  TextEditingController soil = TextEditingController();
+  TextEditingController fert = TextEditingController();
+  TextEditingController details = TextEditingController();
+  TextEditingController mon = TextEditingController();
+  TextEditingController sum = TextEditingController();
+  TextEditingController win = TextEditingController();
   final String name;
   @override
   Widget build(BuildContext context) {
@@ -25,26 +33,12 @@ class _TheSoilDetailsState extends State<TheSoilDetails> {
       body: SingleChildScrollView(
         child: FutureBuilder(
           //type,seasons,crops,needs-fertilizer
-          future:
-              FirebaseFirestore.instance.collection('soils').doc(name).get(),
+          future: getData(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var data = snapshot.data.data();
               List imgurl = [];
               imgurl.addAll(data['sub']);
-
-              TextEditingController soil =
-                  TextEditingController(text: data['soil']);
-              TextEditingController fert =
-                  TextEditingController(text: data['fertilizer']);
-              TextEditingController details =
-                  TextEditingController(text: data['details']);
-              TextEditingController mon =
-                  TextEditingController(text: data['mon']);
-              TextEditingController sum =
-                  TextEditingController(text: data['sum']);
-              TextEditingController win =
-                  TextEditingController(text: data['win']);
 
               return SingleChildScrollView(
                 child: Padding(
@@ -135,5 +129,32 @@ class _TheSoilDetailsState extends State<TheSoilDetails> {
         ),
       ),
     );
+  }
+
+  Future getData() async {
+    var tmp =
+        await FirebaseFirestore.instance.collection('soils').doc(name).get();
+    String text = await translator
+        .translate(tmp.data()['details'], to: 'gu')
+        .then((value) {
+      return value.text;
+    });
+    details.text = text;
+    soil.text = await translator
+        .translate(tmp.data()['name'], to: 'hi')
+        .then((value) {
+      return value.text;
+    });
+    fert.text = await translator
+        .translate(tmp.data()['fertilizer'], to: 'hi')
+        .then((value) {
+      return value.text;
+    });
+    soil.text = await translator
+        .translate(tmp.data()['name'], to: 'hi')
+        .then((value) {
+      return value.text;
+    });
+    return tmp;
   }
 }

@@ -30,6 +30,8 @@ dependencies:
   carousel_slider: ^3.0.0
   lottie: ^1.0.1
   image_cropper:
+  flutter_rating_bar: ^4.0.0
+  translator: ^0.1.6+1
 
 
 

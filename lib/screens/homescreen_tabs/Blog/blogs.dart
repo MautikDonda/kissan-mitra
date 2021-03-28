@@ -14,42 +14,74 @@ class Blogs extends StatefulWidget {
 }
 
 class _BlogsState extends State<Blogs> {
+  bool login;
+  @override
+  void initState() {
+    try {
+      Statics.getUid();
+      login = true;
+    } catch (e) {
+      login = false;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            return ListView.builder(
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (context, index) {
-                return PostCard(snapshot.data.docs[index].data());
+    return (login)
+        ? Scaffold(
+            body: StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('posts').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  return ListView.builder(
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (context, index) {
+                      return PostCard(snapshot.data.docs[index].data());
+                    },
+                  );
+                } else
+                  return Statics.loading();
               },
-            );
-          } else
-            return Statics.loading();
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: "New Post",
-        onPressed: () async {
-          try {
-            Statics.getUid();
-            var res = await Navigator.of(context).pushNamed('newBlog');
-            if (res.toString() == 'success') setState(() {});
-          } catch (e) {
-            var tmp = await Navigator.pushNamed(context, 'login');
-            if (tmp.toString() == 'login') {
-              var res = await Navigator.of(context).pushNamed('newBlog');
-              if (res.toString() == 'success') setState(() {});
-            } else {
-              Statics.showToast("Login Required for Adding Data");
-            }
-          }
-        },
-        child: LineIcon.facebookMessenger(),
-      ),
-    );
+            ),
+            floatingActionButton: FloatingActionButton(
+              tooltip: "New Post",
+              onPressed: () async {
+                var res = await Navigator.of(context).pushNamed('newBlog');
+                if (res.toString() == 'success') setState(() {});
+              },
+              child: LineIcon.facebookMessenger(),
+            ),
+          )
+        : Scaffold(
+            body: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'To Show and Give your Reaction to Posts, You must Login',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                        onPressed: () async {
+                          var tmp = await Navigator.pushNamed(context, 'login');
+                          if (tmp.toString() == 'login') {
+                            setState(() {
+                              login = true;
+                            });
+                          } else
+                            Statics.showToast("Require Login");
+                        },
+                        child: Text("Login"))
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 }

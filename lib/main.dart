@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: Statics.darkTheme ? _darkTheme : _lightTheme,
         routes: routes,
-        home: StartingPage());
+        home: direction);
   }
 }
 

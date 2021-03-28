@@ -16,6 +16,8 @@ import 'package:kissanmitra/screens/forgot-password.dart';
 import 'package:kissanmitra/screens/homescreen.dart';
 import 'package:kissanmitra/screens/forms/login-screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kissanmitra/screens/homescreen_tabs/Agro/addFertilizer.dart';
+import 'package:kissanmitra/screens/homescreen_tabs/Agro/fertilizers.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Blog/newBlog.dart';
 import 'package:kissanmitra/screens/profile.dart';
 import 'package:kissanmitra/main.dart';
@@ -38,6 +40,6 @@ Map<String, WidgetBuilder> routes = {
   'addNewSoil': (c) => AddNewSoil(),
   'addDistrict': (c) => AddDistrict(),
   'newBlog': (c) => NewBlog(),
-  // 'plantModel': (c) => Plant(),
-  // 'machineModel': (c) => MachineModel()
+  'fertilizers':(c) => Fertilizers(),
+  'addFertilizer':(c)=>AddFertilizer(),
 };

@@ -78,10 +78,6 @@ class _NewBlogState extends State<NewBlog> {
                       SizedBox(
                         height: 10,
                       ),
-                      MyInputTextField("Title", name),
-                      SizedBox(
-                        height: 10,
-                      ),
                       MyInputTextField(
                         "Tags",
                         model,
@@ -103,8 +99,7 @@ class _NewBlogState extends State<NewBlog> {
                         onPressed: () async {
                           if (main == null)
                             Statics.showToast("Please Select an Image");
-                          else if (name.text.trim().isEmpty ||
-                              details.text.trim().isEmpty)
+                          else if (details.text.trim().isEmpty)
                             Statics.showToast("All Fields are mendetory");
                           else {
                             setUploadData(context);
@@ -143,8 +138,8 @@ class _NewBlogState extends State<NewBlog> {
         'uid': Statics.getUid(),
         'uname': Statics.name,
         'time': Timestamp.now(),
-        'likes':[],
-        'comments':[],
+        'likes': [],
+        'comments': [],
       });
       await FirebaseFirestore.instance
           .collection('users')

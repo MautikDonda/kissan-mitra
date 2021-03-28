@@ -107,7 +107,7 @@ class Statics {
   }
 }
 
-class User {
+class CurrentUser {
   static String name, email, location, id;
   static setData(String i, String n, String e, String l) {
     name = n;

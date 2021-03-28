@@ -9,12 +9,12 @@ class MarketingYard extends StatefulWidget {
 }
 
 class _MarketingYardState extends State<MarketingYard> {
-  String location = User.location;
+  String location = CurrentUser.location;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(
+        Card(elevation: 20,
           child: ListTile(
             title: Text("Market Yards"),
             trailing: IconButton(
@@ -81,7 +81,8 @@ class _MarketingYardState extends State<MarketingYard> {
               itemCount: 20,
               itemBuilder: (context, i) => Card(
                     child: ListTile(
-                      title: Text('sdf'),
+                      title: Text('Crops'),
+                      subtitle: Text("   Min:100    Max:300"),
                     ),
                   )),
         ),
