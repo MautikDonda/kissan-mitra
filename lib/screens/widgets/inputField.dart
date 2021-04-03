@@ -4,17 +4,23 @@ class MyInputTextField extends StatefulWidget {
   MyInputTextField(this.label, this.controller,
       {this.readOnly = false,
       this.icon = null,
+      this.type = TextInputType.text,
       this.hint = '',
       this.maxline = 1});
   final TextEditingController controller;
   final String label, hint;
   final bool readOnly;
+  final TextInputType type;
   final IconData icon;
   final int maxline;
   @override
   _MyInputTextFieldState createState() =>
       _MyInputTextFieldState(this.label, this.controller,
-          icon: icon, readOnly: readOnly, hint: hint, maxline: maxline);
+          icon: icon,
+          readOnly: readOnly,
+          hint: hint,
+          maxline: maxline,
+          type: type);
 }
 
 class _MyInputTextFieldState extends State<MyInputTextField> {
@@ -22,18 +28,21 @@ class _MyInputTextFieldState extends State<MyInputTextField> {
       {this.readOnly = false,
       this.icon = null,
       this.hint = '',
+      this.type = TextInputType.text,
       this.maxline = 1});
   final TextEditingController controller;
   final int maxline;
   final String label, hint;
   final bool readOnly;
   final IconData icon;
+  final TextInputType type;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       readOnly: readOnly,
+      keyboardType: type,
       maxLines: maxline,
       minLines: 1,
       controller: controller,
