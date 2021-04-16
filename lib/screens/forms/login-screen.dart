@@ -6,7 +6,6 @@ import 'package:kissanmitra/pallete.dart';
 import 'package:kissanmitra/screens/forms/create-new-account.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 import 'package:kissanmitra/screens/widgets/widgets.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -31,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Flexible(
                       child: Center(
                         child: Text(
-                          'appname'.tr(),
+                          'કિસાનમિત્ર',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 60,
@@ -59,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () =>
                               Navigator.pushNamed(context, 'ForgotPassword'),
                           child: Text(
-                            'forgot'.tr(),
+                            'પાસવર્ડ ભૂલી ગયા?',
                             style: kBodyText,
                           ),
                         ),
@@ -99,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Container(
                         child: Text(
-                          'create_new'.tr(),
+                          'નવું ખાતું બનાવો',
                           style: kBodyText,
                         ),
                         decoration: BoxDecoration(

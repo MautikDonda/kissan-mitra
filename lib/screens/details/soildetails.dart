@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:translator/translator.dart';
+import '';
 
 class TheSoilDetails extends StatefulWidget {
   TheSoilDetails(this.name);
@@ -15,7 +15,7 @@ class TheSoilDetails extends StatefulWidget {
 }
 
 class _TheSoilDetailsState extends State<TheSoilDetails> {
-  final translator = GoogleTranslator();
+  // final translator = GoogleTranslator();
   _TheSoilDetailsState(this.name);
   TextEditingController soil = TextEditingController();
   TextEditingController fert = TextEditingController();
@@ -134,27 +134,25 @@ class _TheSoilDetailsState extends State<TheSoilDetails> {
   Future getData() async {
     var tmp =
         await FirebaseFirestore.instance.collection('soils').doc(name).get();
-    String text = await translator
-        .translate(tmp.data()['details'], to: 'gu')
-        .then((value) {
-      return value.text;
-    });
-    details.text = text;
-    soil.text = await translator
-        .translate(tmp.data()['name'], to: 'hi')
-        .then((value) {
-      return value.text;
-    });
-    fert.text = await translator
-        .translate(tmp.data()['fertilizer'], to: 'hi')
-        .then((value) {
-      return value.text;
-    });
-    soil.text = await translator
-        .translate(tmp.data()['name'], to: 'hi')
-        .then((value) {
-      return value.text;
-    });
+    // String text = await translator
+    //     .translate(tmp.data()['details'], to: 'gu')
+    //     .then((value) {
+    //   return value.text;
+    // });
+    // details.text = text;
+    // soil.text =
+    //     await translator.translate(tmp.data()['name'], to: 'hi').then((value) {
+    //   return value.text;
+    // });
+    // fert.text = await translator
+    //     .translate(tmp.data()['fertilizer'], to: 'hi')
+    //     .then((value) {
+    //   return value.text;
+    // });
+    // soil.text =
+    //     await translator.translate(tmp.data()['name'], to: 'hi').then((value) {
+    //   return value.text;
+    // });
     return tmp;
   }
 }

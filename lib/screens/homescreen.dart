@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:kissanmitra/screens/forms/login-screen.dart';
@@ -7,10 +6,7 @@ import 'package:kissanmitra/screens/homescreen_tabs/Agro/agro.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Blog/blogs.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/History/AllHistory.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Market/market.dart';
-import 'package:kissanmitra/screens/profile.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:kissanmitra/screens/widgets/widgets.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Homescreen extends StatefulWidget {

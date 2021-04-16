@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/details/machine.dart';
-import 'package:kissanmitra/screens/forms/addMachine.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:kissanmitra/screens/widgets/widgets.dart';
 import 'package:kissanmitra/screens/widgets/one_Machine_card.dart';
 
 class MachineView extends StatefulWidget {

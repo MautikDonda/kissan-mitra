@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -89,7 +89,7 @@ class Statics {
   static String anim;
   static SharedPreferences pref;
   static String getUid() => FirebaseAuth.instance.currentUser.uid;
-
+  static String yard = '';
   static Widget getLoadingScreen() {
     return Container(
       child: Center(

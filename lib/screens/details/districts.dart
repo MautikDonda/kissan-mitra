@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/details/allsoils.dart';
-import 'package:kissanmitra/screens/forms/addDistrict.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 
 class AllDistricss extends StatefulWidget {

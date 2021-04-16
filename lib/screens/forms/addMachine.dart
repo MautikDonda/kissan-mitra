@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 import 'package:path/path.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/main.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:kissanmitra/screens/widgets/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

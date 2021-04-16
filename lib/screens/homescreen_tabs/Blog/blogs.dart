@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/postCard.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 
 class Blogs extends StatefulWidget {
   @override

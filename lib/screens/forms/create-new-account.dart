@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,7 +60,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   TextEditingController dis = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (uploaded) return Statics.getLoadingScreen();
+    if (uploaded) return Scaffold(body: Statics.getLoadingScreen());
     precacheImage(AssetImage('assets/images/register_bg.jpg'), context);
     Size size = MediaQuery.of(context).size;
     String email, pass, cpass, name;
@@ -167,7 +166,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                   children: [
                     TextInputField(
                         icon: FontAwesomeIcons.user,
-                        hint: 'User',
+                        hint: 'નામ',
                         inputType: TextInputType.name,
                         inputAction: TextInputAction.next,
                         value: 0),
@@ -230,7 +229,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                                         color: kWhite,
                                       ),
                                     ),
-                                    hintText: "District",
+                                    hintText: "જીલ્લો",
                                     hintStyle: kBodyText,
                                   ),
                                   style: kBodyText,
@@ -241,12 +240,12 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         )),
                     PasswordInput(
                         icon: FontAwesomeIcons.lock,
-                        hint: 'Password',
+                        hint: 'પાસવર્ડ',
                         inputAction: TextInputAction.next,
                         value: 2),
                     PasswordInput(
                         icon: FontAwesomeIcons.lock,
-                        hint: 'Confirm Password',
+                        hint: 'પાસવર્ડની પુષ્ટિ કરો',
                         inputAction: TextInputAction.done,
                         value: 3),
                     SizedBox(
@@ -263,7 +262,8 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         if (name.isEmpty ||
                             email.isEmpty ||
                             pass.isEmpty ||
-                            cpass.isEmpty)
+                            cpass.isEmpty ||
+                            dis.text == null)
                           Statics.showToast("Fill All the Fields");
                         else if (pass != cpass)
                           Statics.showToast("Both Password Doesn't Mathches");
@@ -282,7 +282,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'already'.tr(),
+                          'પહેલેથી જ ખાતું છે?',
                           style: kBodyText,
                         ),
                         GestureDetector(
@@ -313,7 +313,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   uploadData(context) async {
     UserCredential user;
     try {
-      String name = CreateNewAccount.myCreateController[0].text;
+      String name = CreateNewAccount.myCreateController[0].text.trim();
       // await Firebase.initializeApp();
       String url;
       await FirebaseAuth.instance
@@ -333,7 +333,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
             .doc(user.user.uid)
             .set({
           'name': name,
-          'email': CreateNewAccount.email,
+          'email': CreateNewAccount.email.text,
           'dp': url,
           'district': dis.text,
           "id": user.user.uid

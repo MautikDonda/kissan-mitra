@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kissanmitra/screens/details/machine.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Agro/ferti_details.dart';
 import 'package:kissanmitra/screens/widgets/one_Machine_card.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';

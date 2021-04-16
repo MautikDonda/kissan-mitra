@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    
     await Firebase.initializeApp();
   } catch (e) {
     print('Error in initialization : $e');
@@ -44,7 +43,11 @@ class _MyAppState extends State<MyApp> {
     }
 
     try {
-      Statics.anim = Statics.pref.getString("loading") ?? "circle.json";
+      Statics.anim = Statics.pref.getString("loading");
+      if (Statics.anim == null) {
+        Statics.anim = "circle.json";
+        Statics.pref.setString("loading", 'circle.json');
+      }
     } catch (e) {
       Statics.pref.setString("loading", 'circle.json');
       Statics.anim = Statics.pref.getString("loading");

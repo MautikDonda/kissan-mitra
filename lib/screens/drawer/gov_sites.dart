@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:kissanmitra/screens/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'dart:async';
 
 class GovSites extends StatefulWidget {
   @override

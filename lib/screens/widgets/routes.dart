@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:kissanmitra/screens/details/machine.dart';
-import 'package:kissanmitra/screens/details/plant.dart';
 import 'package:kissanmitra/screens/forms/addDistrict.dart';
 import 'package:kissanmitra/screens/forms/addMachine.dart';
 import 'package:kissanmitra/screens/forms/addPlant.dart';
@@ -15,7 +13,6 @@ import 'package:kissanmitra/screens/drawer/soil.dart';
 import 'package:kissanmitra/screens/forgot-password.dart';
 import 'package:kissanmitra/screens/homescreen.dart';
 import 'package:kissanmitra/screens/forms/login-screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Agro/addFertilizer.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Agro/fertilizers.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Blog/newBlog.dart';
@@ -40,6 +37,6 @@ Map<String, WidgetBuilder> routes = {
   'addNewSoil': (c) => AddNewSoil(),
   'addDistrict': (c) => AddDistrict(),
   'newBlog': (c) => NewBlog(),
-  'fertilizers':(c) => Fertilizers(),
-  'addFertilizer':(c)=>AddFertilizer(),
+  'fertilizers': (c) => Fertilizers(),
+  'addFertilizer': (c) => AddFertilizer(),
 };

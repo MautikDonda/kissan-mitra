@@ -1,11 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 import 'package:path/path.dart';
@@ -169,8 +166,9 @@ class _AddFertilizerState extends State<AddFertilizer> {
     for (int i = 0; i < 5; ++i) {
       if (img[i] != null) {
         String fileName = basename(img[i].path);
-        var ref =
-            FirebaseStorage.instance.ref().child('fertilizers/$tmp/sub/$fileName');
+        var ref = FirebaseStorage.instance
+            .ref()
+            .child('fertilizers/$tmp/sub/$fileName');
 
         await ref.putFile(img[i]);
         String link = await ref.getDownloadURL();
@@ -248,7 +246,10 @@ class _AddFertilizerState extends State<AddFertilizer> {
       Navigator.of(context).pop("success");
     } catch (e) {
       Statics.showToast(e.toString());
-      await FirebaseFirestore.instance.collection('fertilizers').doc(tmp).delete();
+      await FirebaseFirestore.instance
+          .collection('fertilizers')
+          .doc(tmp)
+          .delete();
       setState(() {
         uploaded = false;
       });

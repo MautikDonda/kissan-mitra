@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kissanmitra/pallete.dart';
 import 'package:kissanmitra/screens/widgets/background-image.dart';
-import 'package:kissanmitra/screens/widgets/background-image.dart';
 import 'package:kissanmitra/screens/widgets/rounded-button.dart';
 import 'package:kissanmitra/screens/widgets/text-field-input.dart';
 
