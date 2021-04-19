@@ -17,26 +17,28 @@ import 'package:kissanmitra/screens/homescreen_tabs/Agro/addFertilizer.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Agro/fertilizers.dart';
 import 'package:kissanmitra/screens/homescreen_tabs/Blog/newBlog.dart';
 import 'package:kissanmitra/screens/profile.dart';
-import 'package:kissanmitra/main.dart';
+import 'package:kissanmitra/screens/splashscreen.dart';
+import 'package:kissanmitra/screens/widgets/statics.dart';
 
 Map<String, WidgetBuilder> routes = {
-  'ForgotPassword': (context) => ForgotPassword(),
-  'CreateNewAccount': (context) => CreateNewAccount(),
-  'login': (context) => LoginScreen(),
-  'greet': (context) => Greetings(),
-  'home': (context) => Homescreen(),
-  'crops': (context) => CropsView(),
-  'soil': (context) => SoilView(),
-  'machine': (context) => MachineView(),
-  'gov_site': (context) => GovSites(),
-  'settings': (context) => Settings(),
-  'help': (context) => Help(),
-  'profile': (context) => Profile(),
-  'addPlant': (c) => AddPlant(),
-  'addMachine': (c) => AddMachine(),
-  'addNewSoil': (c) => AddNewSoil(),
-  'addDistrict': (c) => AddDistrict(),
-  'newBlog': (c) => NewBlog(),
-  'fertilizers': (c) => Fertilizers(),
-  'addFertilizer': (c) => AddFertilizer(),
+  '/ForgotPassword': (context) => ForgotPassword(),
+  '/CreateNewAccount': (context) => CreateNewAccount(),
+  '/login': (context) => LoginScreen(),
+  '/': (context) => Splashscreen(),
+  // 'greet': (context) => Greetings(),
+  '/home': (context) => Homescreen(),
+  '/crops': (context) => CropsView(),
+  '/soil': (context) => SoilView(),
+  '/machine': (context) => MachineView(),
+  '/gov_site': (context) => GovSites(),
+  '/settings': (context) => Settings(),
+  '/help': (context) => Help(),
+  '/profile': (context) => Profile(),
+  '/addPlant': (c) => AddPlant(),
+  '/addMachine': (c) => AddMachine(),
+  '/addNewSoil': (c) => AddNewSoil(),
+  '/addDistrict': (c) => AddDistrict(),
+  '/newBlog': (c) => NewBlog(),
+  '/fertilizers': (c) => Fertilizers(),
+  '/addFertilizer': (c) => AddFertilizer(),
 };

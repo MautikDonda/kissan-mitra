@@ -25,72 +25,92 @@ class _MarketingYardState extends State<MarketingYard> {
               title: Text(Statics.yard != ''
                   ? Statics.yard
                   : "એક પણ માર્કેટિંગ યાર્ડ પસંદ કરેલ નથી"),
-              trailing: IconButton(
-                onPressed: () async {
-                  String tmp = await showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      scrollable: true,
-                      title: Text("Marketing Yards"),
-                      content: SingleChildScrollView(
-                        child: Container(
-                          // child: Text("ram ram ram "),
-                          width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.5,
-                          child: SingleChildScrollView(
-                            child: FutureBuilder(
-                              future: FirebaseFirestore.instance
-                                  .collection("yards")
-                                  .get(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  List data = snapshot.data.docs;
-                                  return Column(
-                                    children: List.generate(
-                                        data.length,
-                                        (i) => RadioListTile(
-                                            title: Text(data[i]['id']),
-                                            value: data[i]['id'],
-                                            groupValue: Statics.yard,
-                                            onChanged: (val) {
-                                              Statics.yard = val;
-                                              Navigator.pop(context, "reload");
-                                            })),
-                                  );
-                                } else
-                                  return Center(child: Statics.loading());
-                              },
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () async {
+                        DateTime tmp = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2021, 1, 1),
+                          lastDate: DateTime.now(),
+                        );
+                        if (tmp != null)
+                          setState(() {
+                            date = tmp.toString().substring(0, 10);
+                          });
+                      }),
+                  IconButton(
+                    onPressed: () async {
+                      String tmp = await showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          scrollable: true,
+                          title: Text("માર્કેટિંગ યાર્ડ્સ"),
+                          content: SingleChildScrollView(
+                            child: Container(
+                              // child: Text("ram ram ram "),
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.5,
+                              child: SingleChildScrollView(
+                                child: FutureBuilder(
+                                  future: FirebaseFirestore.instance
+                                      .collection("yards")
+                                      .get(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      List data = snapshot.data.docs;
+                                      return Column(
+                                        children: List.generate(
+                                            data.length,
+                                            (i) => RadioListTile(
+                                                title: Text(data[i]['id']),
+                                                value: data[i]['id'],
+                                                groupValue: Statics.yard,
+                                                onChanged: (val) {
+                                                  Statics.yard = val;
+                                                  Navigator.pop(
+                                                      context, "reload");
+                                                })),
+                                      );
+                                    } else
+                                      return Center(child: Statics.loading());
+                                  },
+                                ),
+                              ),
                             ),
                           ),
+                          actions: [
+                            RaisedButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => AddMarket(),
+                                ));
+                              },
+                              child: Text("Add Market"),
+                            ),
+                            RaisedButton(
+                              color: Colors.greenAccent,
+                              onPressed: () {
+                                Navigator.of(context).pop("reload");
+                              },
+                              child: Text("OK"),
+                            )
+                          ],
                         ),
-                      ),
-                      actions: [
-                        RaisedButton(
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                              builder: (context) => AddMarket(),
-                            ));
-                          },
-                          child: Text("Add Market"),
-                        ),
-                        RaisedButton(
-                          color: Colors.greenAccent,
-                          onPressed: () {
-                            Navigator.of(context).pop("reload");
-                          },
-                          child: Text("OK"),
-                        )
-                      ],
-                    ),
-                  );
-                  if (tmp == 'reload')
-                    setState(() {
-                      Statics.yard = Statics.yard;
-                    });
-                },
-                tooltip: "Click to change Location",
-                icon: Icon(LineIcon.searchLocation().icon),
+                      );
+                      if (tmp == 'reload')
+                        setState(() {
+                          Statics.yard = Statics.yard;
+                        });
+                    },
+                    tooltip: "Click to change Location",
+                    icon: Icon(LineIcon.searchLocation().icon),
+                  ),
+                ],
               ),
             ),
           ),

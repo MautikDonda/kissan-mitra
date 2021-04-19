@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kissanmitra/pallete.dart';
@@ -119,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   backgroundProcess(context) async {
     try {
+      await Firebase.initializeApp();
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: CreateNewAccount.myCreateController[1].text,

@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Statics {
+  static Widget direction;
   static List crops = [
     'ડાંગર',
     'વરીયાળી',
@@ -115,7 +116,7 @@ class Statics {
 
   static bool login;
 
-  static bool darkTheme;
+  static bool darkTheme = false;
   static void showToast(var msg1, {i = 0}) {
     Toast length = (i == 0) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG;
     Fluttertoast.showToast(

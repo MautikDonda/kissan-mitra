@@ -1,18 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kissanmitra/screens/homescreen.dart';
 import 'package:kissanmitra/screens/widgets/routes.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp();
-  } catch (e) {
-    print('Error in initialization : $e');
-  }
-  Statics.pref = await SharedPreferences.getInstance();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -31,38 +24,27 @@ class _MyAppState extends State<MyApp> {
   Color color1 = Colors.white;
   Color color2 = Colors.white;
   Color color3 = Colors.white;
-  Widget direction;
-  @override
-  void initState() {
-    try {
-      Statics.darkTheme = Statics.pref.getBool("dark") ?? false;
-      direction = Homescreen();
-    } catch (e) {
-      direction = StartingPage();
-      Statics.pref.setBool("dark", false);
-    }
-
-    try {
-      Statics.anim = Statics.pref.getString("loading");
-      if (Statics.anim == null) {
-        Statics.anim = "circle.json";
-        Statics.pref.setString("loading", 'circle.json');
-      }
-    } catch (e) {
-      Statics.pref.setString("loading", 'circle.json');
-      Statics.anim = Statics.pref.getString("loading");
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Kissan Mitra',
-        debugShowCheckedModeBanner: false,
-        theme: Statics.darkTheme ? _darkTheme : _lightTheme,
-        routes: routes,
-        home: direction);
+      title: 'કિસાન મિત્ર',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      theme: Statics.darkTheme ? _darkTheme : _lightTheme,
+      routes: routes,
+    );
+  }
+}
+
+class Demo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text("Bapa ni Krupa"),
+      ),
+    );
   }
 }
 
@@ -99,7 +81,7 @@ class _StartingPageState extends State<StartingPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.of(context).pushNamed('login');
+                    // Navigator.of(context).pushNamed('/login');
                     setState(() {
                       color1 = Colors.orangeAccent;
                       color2 = Colors.grey;
@@ -129,7 +111,7 @@ class _StartingPageState extends State<StartingPage> {
                       color3 = Colors.grey;
                       print("Showa");
                     });
-                    // Navigator.of(context).pushNamed('login');
+                    // Navigator.of(context).pushNamed('/login');
                   },
                   child: Card(
                     color: color2,
@@ -154,7 +136,7 @@ class _StartingPageState extends State<StartingPage> {
                       color2 = Colors.grey;
                       print("Showa");
                     });
-                    // Navigator.of(context).pushNamed('login');
+                    // Navigator.of(context).pushNamed('/login');
                   },
                   child: Card(
                     color: color3,
@@ -176,7 +158,7 @@ class _StartingPageState extends State<StartingPage> {
                   child: SizedBox(
                     child: RaisedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('greet');
+                        Navigator.of(context).pushNamed('/greet');
                       },
                       child: Text(
                         'Next',
@@ -215,8 +197,8 @@ class Greetings extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.of(context)
-                            .pushNamedAndRemoveUntil('home', (route) => false);
-                        // Navigator.of(context).pushNamed('home');
+                            .pushNamedAndRemoveUntil('/home', (route) => false);
+                        // Navigator.of(context).pushNamed('/home');
                       },
                       child: Text(
                         'Next',

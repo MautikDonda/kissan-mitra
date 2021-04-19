@@ -15,7 +15,7 @@ class Agro extends StatelessWidget {
           Card(
               child: ListTile(
             onTap: () {
-              Navigator.of(context).pushNamed('fertilizers');
+              Navigator.of(context).pushNamed('/fertilizers');
             },
             title: Text("Fertilizers"),
           ))

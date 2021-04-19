@@ -54,13 +54,13 @@ class _AllSoilsState extends State<AllSoils> {
           onPressed: () async {
             try {
               print(Statics.getUid());
-              var res = await Navigator.of(context).pushNamed('addNewSoil');
+              var res = await Navigator.of(context).pushNamed('/addNewSoil');
               if (res.toString() == 'add') setState(() {});
             } catch (e) {
               print(e.toString());
               var tmp = await Navigator.pushNamed(context, 'login');
               if (tmp.toString() == 'login') {
-                var res = await Navigator.of(context).pushNamed('addNewSoil');
+                var res = await Navigator.of(context).pushNamed('/addNewSoil');
                 if (res.toString() == 'add') setState(() {});
               } else {
                 Statics.showToast("Login Required for Adding Data");

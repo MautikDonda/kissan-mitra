@@ -45,12 +45,12 @@ class _FertilizersState extends State<Fertilizers> {
         onPressed: () async {
           try {
             Statics.getUid();
-            var res = await Navigator.of(context).pushNamed('addFertilizer');
+            var res = await Navigator.of(context).pushNamed('/addFertilizer');
             if (res.toString() == 'success') setState(() {});
           } catch (e) {
             var tmp = await Navigator.pushNamed(context, 'login');
             if (tmp.toString() == 'login') {
-              var res = await Navigator.of(context).pushNamed('addFertilizer');
+              var res = await Navigator.of(context).pushNamed('/addFertilizer');
               if (res.toString() == 'success') setState(() {});
             } else {
               Statics.showToast("Login Required for Adding Data");

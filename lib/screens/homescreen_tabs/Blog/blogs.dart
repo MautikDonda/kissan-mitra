@@ -44,7 +44,7 @@ class _BlogsState extends State<Blogs> {
             floatingActionButton: FloatingActionButton(
               tooltip: "New Post",
               onPressed: () async {
-                var res = await Navigator.of(context).pushNamed('newBlog');
+                var res = await Navigator.of(context).pushNamed('/newBlog');
                 if (res.toString() == 'success') setState(() {});
               },
               child: LineIcon.facebookMessenger(),

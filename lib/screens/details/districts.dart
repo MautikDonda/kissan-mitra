@@ -52,12 +52,12 @@ class _AllDistricssState extends State<AllDistricss> {
         onPressed: () async {
           try {
             Statics.getUid();
-            var res = await Navigator.of(context).pushNamed('addDistrict');
+            var res = await Navigator.of(context).pushNamed('/addDistrict');
             if (res.toString() == 'add') setState(() {});
           } catch (e) {
             var tmp = await Navigator.pushNamed(context, 'login');
             if (tmp.toString() == 'login') {
-              var res = await Navigator.of(context).pushNamed('addDistrict');
+              var res = await Navigator.of(context).pushNamed('/addDistrict');
               if (res.toString() == 'add') setState(() {});
             } else {
               Statics.showToast("Login Required for Adding Data");

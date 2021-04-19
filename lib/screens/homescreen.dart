@@ -51,7 +51,7 @@ class _HomescreenState extends State<Homescreen> {
     return WillPopScope(
       onWillPop: pop,
       child: Scaffold(
-        appBar: AppBar(title: Text("KissanMitra"), actions: []),
+        appBar: AppBar(title: Text('કિસાન મિત્ર'), actions: []),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(boxShadow: [
@@ -108,7 +108,7 @@ class _HomescreenState extends State<Homescreen> {
                       '🏜',
                       style: TextStyle(fontSize: 25),
                     ), () {
-                  Navigator.of(context).popAndPushNamed('soil');
+                  Navigator.of(context).popAndPushNamed('/soil');
                 }),
                 myListTile(
                     "Crops",
@@ -116,7 +116,7 @@ class _HomescreenState extends State<Homescreen> {
                       '🌱',
                       style: TextStyle(fontSize: 25),
                     ), () {
-                  Navigator.of(context).popAndPushNamed('crops');
+                  Navigator.of(context).popAndPushNamed('/crops');
                 }),
                 myListTile(
                     "Machines",
@@ -124,7 +124,7 @@ class _HomescreenState extends State<Homescreen> {
                       '🚜',
                       style: TextStyle(fontSize: 25),
                     ), () {
-                  Navigator.of(context).popAndPushNamed('machine');
+                  Navigator.of(context).popAndPushNamed('/machine');
                 }),
                 Divider(
                   thickness: 1.5,
@@ -138,7 +138,7 @@ class _HomescreenState extends State<Homescreen> {
                     size: 30,
                   ),
                   () {
-                    Navigator.of(context).popAndPushNamed('gov_site');
+                    Navigator.of(context).popAndPushNamed('/gov_site');
                   },
                 ),
                 Divider(
@@ -153,7 +153,7 @@ class _HomescreenState extends State<Homescreen> {
                     size: 30,
                   ),
                   () {
-                    Navigator.of(context).popAndPushNamed('settings');
+                    Navigator.of(context).popAndPushNamed('/settings');
                   },
                 ),
                 myListTile(
@@ -163,7 +163,7 @@ class _HomescreenState extends State<Homescreen> {
                     size: 30,
                   ),
                   () {
-                    Navigator.of(context).popAndPushNamed('help');
+                    Navigator.of(context).popAndPushNamed('/help');
                   },
                 ),
                 Divider(
@@ -214,7 +214,7 @@ class _HomescreenState extends State<Homescreen> {
                       size: 30,
                     ),
                     () {
-                      Navigator.of(context).popAndPushNamed('profile');
+                      Navigator.of(context).popAndPushNamed('/profile');
                     },
                   ),
                 )
