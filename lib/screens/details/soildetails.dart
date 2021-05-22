@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
-import '';
 
 class TheSoilDetails extends StatefulWidget {
   TheSoilDetails(this.name);
@@ -134,25 +133,13 @@ class _TheSoilDetailsState extends State<TheSoilDetails> {
   Future getData() async {
     var tmp =
         await FirebaseFirestore.instance.collection('soils').doc(name).get();
-    // String text = await translator
-    //     .translate(tmp.data()['details'], to: 'gu')
-    //     .then((value) {
-    //   return value.text;
-    // });
-    // details.text = text;
-    // soil.text =
-    //     await translator.translate(tmp.data()['name'], to: 'hi').then((value) {
-    //   return value.text;
-    // });
-    // fert.text = await translator
-    //     .translate(tmp.data()['fertilizer'], to: 'hi')
-    //     .then((value) {
-    //   return value.text;
-    // });
-    // soil.text =
-    //     await translator.translate(tmp.data()['name'], to: 'hi').then((value) {
-    //   return value.text;
-    // });
+    details.text = tmp.data()['details'];
+    soil.text = tmp.data()['name'];
+    fert.text = tmp.data()['fertilizer'];
+    soil.text = tmp.data()['name'];
+    mon.text = tmp.data()['mon'];
+    sum.text = tmp.data()['sum'];
+    win.text = tmp.data()['win'];
     return tmp;
   }
 }

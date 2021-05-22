@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     GestureDetector(
                       onTap: () async {
                         var tmp = await Navigator.pushNamed(
-                            context, 'CreateNewAccount');
+                            context, '/CreateNewAccount');
                         if (tmp.toString() == 'create')
                           setState(() {
                             CreateNewAccount.pass.text = '';

@@ -14,7 +14,7 @@ class _HelpState extends State<Help> {
       ),
       body: SafeArea(
           child: Container(
-        child: Column(),
+        child: Center(child: Text("FAQs available soon")),
       )),
     );
   }

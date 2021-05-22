@@ -43,13 +43,18 @@ class _SplashscreenState extends State<Splashscreen> {
               if (snapshot.hasData) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 200),
-                  child: Text(
-                    'કિસાન મિત્ર',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 60,
-                        fontWeight: FontWeight.bold),
+                  child: Column(
+                    children: [
+                      Image.asset('assets/images/kisan_logo.png'),
+                      Text(
+                        'કિસાન મિત્ર',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 );
               } else

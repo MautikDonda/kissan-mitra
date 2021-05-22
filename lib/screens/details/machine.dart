@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kissanmitra/screens/homescreen_tabs/Agro/addPrice.dart';
 import 'package:kissanmitra/screens/widgets/inputField.dart';
 import 'package:kissanmitra/screens/widgets/statics.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -92,6 +93,14 @@ class _MachineModelState extends State<MachineModel> {
                           readOnly: true,
                           maxline: 20,
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Sellers"),
+                        AllSellers(id),
+                        SizedBox(
+                          height: 60,
+                        ),
                       ]),
                 ),
               );
@@ -100,6 +109,48 @@ class _MachineModelState extends State<MachineModel> {
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.money),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AddPrice('machines', id)));
+        },
+      ),
+    );
+  }
+}
+
+class AllSellers extends StatelessWidget {
+  final String id;
+  AllSellers(this.id);
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance
+          .collection("machines")
+          .doc(id)
+          .collection('seller')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) if (snapshot.data.docs.length == 0)
+          return Text("No Data Available");
+        else
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: snapshot.data.docs.length,
+            itemBuilder: (context, index) => Card(
+              child: ExpansionTile(
+                children: [Text(snapshot.data.docs[index].data()['address'])],
+                title: Text(snapshot.data.docs[index].data()['sellerName'] ??
+                    'Not Available'),
+                subtitle: Text(snapshot.data.docs[index].data()['address']),
+                trailing: Text('₹${snapshot.data.docs[index].data()['price']}'),
+              ),
+            ),
+          );
+        else
+          return Statics.getLoadingScreen();
+      },
     );
   }
 }

@@ -2,7 +2,7 @@
     package="com.example.kissanmitra">
    <application
       android:requestLegacyExternalStorage="true"
-        android:label="kissanmitra"
+        android:label="Kissan Mitra"
         android:icon="@mipmap/ic_launcher">
          <activity
               android:name="com.yalantis.ucrop.UCropActivity"
